@@ -1,0 +1,103 @@
+package net.auth;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+	@Embedded
+	private Address home_address;
+	@Embedded
+	private Address company_address;
+	@AttributeOverrides ({
+		@AttributeOverride(name = "doorno" , column= @Column(name = "CMPY_DOORNO")),
+		@AttributeOverride(name = "street",column = @Column(name = "CMPY_STREET")),
+		@AttributeOverride(name = "city",column = @Column(name = "CMPY_CITY")),
+		@AttributeOverride(name = "state",column = @Column(name = "CMPY_STATE")),
+		@AttributeOverride(name = "pincode",column = @Column(name = "CMPY_PINCODE"))
+	})
+	@Id
+	@Column (name = "USER_ID")
+	private int user_id;
+	@Column (name = "USER_NAME")
+	private String name;
+	@Column (name = "MAIL_ID")
+	private String email_id;
+	@Column (name = "PHONE")
+	private double phone_no;
+	public int getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail_id() {
+		return email_id;
+	}
+	public void setEmail_id(String email_id) {
+		this.email_id = email_id;
+	}
+	public double getPhone_no() {
+		return phone_no;
+	}
+	public void setPhone_no(double phone_no) {
+		this.phone_no = phone_no;
+	}
+	
+	
+}
+
+
+package net.auth;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class Address {
+	private String doorno;
+	private String street;
+	private String city;
+	private String state;
+	private int pincode;
+	public String getDoorno() {
+		return doorno;
+	}
+	public void setDoorno(String doorno) {
+		this.doorno = doorno;
+	}
+	public String getStreet() {
+		return street;
+	}
+	public void setStreet(String street) {
+		this.street = street;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
+	public int getPincode() {
+		return pincode;
+	}
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+	
+}
